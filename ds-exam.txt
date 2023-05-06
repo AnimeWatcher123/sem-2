@@ -1,1 +1,69 @@
-Ds practical answers 
+Question 1:
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 10
+
+int queue[MAX_SIZE];
+int front = -1, rear = -1;
+
+void enqueue(int data) {
+    if (rear == MAX_SIZE - 1) {
+        printf("Error: Queue is full\n");
+        return;
+    }
+    if (front == -1) {
+        front = 0;
+    }
+    rear++;
+    queue[rear] = data;
+}
+
+void display() {
+    if (front == -1) {
+        printf("Error: Queue is empty\n");
+        return;
+    }
+    printf("Queue elements: ");
+    for (int i = front; i <= rear; i++) {
+        printf("%d ", queue[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    enqueue(1);
+    enqueue(2);
+    enqueue(3);
+    display();
+    enqueue(4);
+    display();
+    return 0;
+}
+
+
+Question 2:
+#include <stdio.h>
+
+int linear_search(int arr[], int n, int x) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == x) {
+            return i;   // element found, return index
+        }
+    }
+    return -1;          // element not found
+}
+
+int main() {
+    int arr[] = { 2, 4, 6, 8, 10, 12 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int x = 10;
+    int index = linear_search(arr, n, x);
+    if (index == -1) {
+        printf("Element not found\n");
+    }
+    else {
+        printf("Element found at index %d\n", index);
+    }
+    return 0;
+}
